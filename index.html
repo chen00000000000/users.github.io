@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>PDF Upload and Display</title>
+</head>
+<body>
+    <h1>上傳並顯示 PDF</h1>
+    
+    <!-- 上傳 PDF 的表單控件 -->
+    <input type="file" id="pdfInput" accept="application/pdf" />
+    
+    <!-- 顯示 PDF 的 embed 元素 -->
+    <embed id="pdfEmbed" type="application/pdf" width="600" height="500">
+    
+    <script>
+        // 監聽 input 元素的變化事件
+        document.getElementById('pdfInput').addEventListener('change', function(e){
+            // 獲取選擇的文件
+            var file = e.target.files[0];
+            
+            // 檢查文件類型是否為 PDF
+            if (file.type === "application/pdf") {
+                // 創建一個物件 URL
+                var objectURL = URL.createObjectURL(file);
+                
+                // 設定 embed 元素的 src 屬性以顯示 PDF
+                document.getElementById('pdfEmbed').src = objectURL;
+            } else {
+                alert("請選擇一個 PDF 文件！");
+            }
+        });
+    </script>
+</body>
+</html>
